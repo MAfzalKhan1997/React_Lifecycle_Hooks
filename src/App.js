@@ -22,10 +22,12 @@ class App extends Component {
     })
   }
 
-  componentWillMount() {
-    this.setState({ volume: 5 })
-  }
+  static getDerivedStateFromProps(){
 
+    return { volume : 5 }
+
+  }
+ 
   render() {
     const { furtherSteps } = this.state;
     return (

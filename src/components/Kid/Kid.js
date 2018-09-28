@@ -18,14 +18,19 @@ export default class Kid extends React.Component {
   }
 
 static getDerivedStateFromProps(props,state){
-
-  const { furtherSteps } = this.props;
-
+  const { furtherSteps } = props;
+  const { danceSteps , currentStepIndex } = state;
+  if( currentStepIndex === 2 ){ 
+    return { 
+      currentStepIndex: 0,
+      danceSteps: furtherSteps 
+    }
+  } 
   console.log('props',props)
-  // console.log('dancesteps',this.state.danceSteps)
-  return { danceSteps : furtherSteps }
+  console.log('dancesteps', danceSteps) 
   
- 
+  return null
+  
 }
 
   componentDidMount() {
