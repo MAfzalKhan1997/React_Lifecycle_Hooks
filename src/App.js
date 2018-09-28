@@ -2,15 +2,24 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Kid from './components/Kid/Kid';
+import Teacher from './components/Teacher/Teacher';
 
 class App extends Component {
 
   constructor() {
     super()
+    
     this.state = {
 
       volume:0,
     }
+    this.furtherSteps = this.furtherSteps.bind(this);
+  }
+
+  furtherSteps(furtherSteps){
+    this.setState({
+      furtherSteps,
+    })
   }
 
   componentWillMount() {
@@ -18,10 +27,12 @@ class App extends Component {
   }
 
   render() {
+    const { furtherSteps } = this.state;
     return (
       <div className="App">
 
-        <Kid dressColor = 'blue' />
+        <Kid dressColor = 'blue' furtherSteps={furtherSteps} />
+        <Teacher nextSteps={this.furtherSteps} />
 
       </div>
     );
