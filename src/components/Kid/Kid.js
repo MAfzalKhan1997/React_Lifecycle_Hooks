@@ -17,29 +17,29 @@ export default class Kid extends React.Component {
     };
   }
 
-static getDerivedStateFromProps(props,state){
-  const { furtherSteps } = props;
-  const { danceSteps , currentStepIndex } = state;
-  if( currentStepIndex === 2 ){ 
-    return { 
-      currentStepIndex: 0,
-      danceSteps: furtherSteps 
+  static getDerivedStateFromProps(props, state) {
+    const { furtherSteps, applaud } = props;
+    const { danceSteps, emotion } = state;
+
+     if (danceSteps.length < 5) {
+      danceSteps.push(...furtherSteps)
     }
-  } 
-  console.log('props',props)
-  console.log('dancesteps', danceSteps) 
-  
-  return null
-  
-}
+
+    console.log('props', props)
+    console.log('dancesetps', danceSteps)
+    
+    return {
+      danceSteps,
+      startedPerforming: danceSteps.length === 5 ? true : false,
+      emotion: applaud ? applaud : emotion,
+    }
+
+  }
 
   componentDidMount() {
 
     this.setState({
-      emotion: 'nervous over',
       danceSteps: ['step1', 'step2'],
-      startedPerforming: true,
-
     })
 
   }
