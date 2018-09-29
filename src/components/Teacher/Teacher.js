@@ -1,6 +1,5 @@
 import React from 'react';
-import '../../App.css';
- 
+import '../../App.css'; 
 
 export default class Teacher extends React.Component {
  
@@ -13,12 +12,10 @@ export default class Teacher extends React.Component {
   sendDataToKid() {
     const {nextSteps}  = this.props;
     
-    const furtherSteps = [ 'step3' , 'step4' , 'step5' ] 
-  
+    const furtherSteps = [ 'step3' , 'step4' , 'step5' ]    
     nextSteps(furtherSteps);
  }
-
-
+ 
  render() {
    
    return (

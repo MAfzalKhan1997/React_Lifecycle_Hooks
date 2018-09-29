@@ -1,6 +1,5 @@
 import React from 'react';
-import '../../App.css';
-
+import '../../App.css'; 
 
 export default class Kid extends React.Component {
 
@@ -25,9 +24,6 @@ export default class Kid extends React.Component {
       danceSteps.push(...furtherSteps)
     }
 
-    // console.log('props', props)
-    // console.log('dancesetps', danceSteps)
-
     return {
       danceSteps,
       startedPerforming: danceSteps.length === 5 ? true : false,
@@ -45,25 +41,30 @@ export default class Kid extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps)
-    if (prevProps.stars === 3 ) {
-      
-      this.qualified();
 
+    if (prevProps.stars === 3) {
+      this.qualified();
     }
   }
 
   qualified() {
-    console.log('qualified')
-    this.setState({ 
+
+    this.setState({
       startedPerforming: false,
-      danceSteps: [] 
+      qualified: true,
+      danceSteps: []
     })
+  }
+
+  componentWillUnmount() {
+
+    const { judge } = this.props;
+    judge(false);
   }
 
   render() {
     const { dressColor } = this.props;
-    const { danceSteps, emotion, startedPerforming, currentStepIndex } = this.state;
+    const { danceSteps, emotion, startedPerforming, currentStepIndex, qualified } = this.state;
 
     return (
       <div>
@@ -71,11 +72,14 @@ export default class Kid extends React.Component {
         <div style={{ backgroundColor: dressColor, width: 50, height: 50 }}></div>
         <div>Emotion: {emotion} </div>
         {
-          startedPerforming && <div>
-            Current Step: {danceSteps[currentStepIndex]}
-            <button onClick={() => this.setState({ currentStepIndex: currentStepIndex + 1 })}>Perform Next Step</button>
-          </div>}
-
+          startedPerforming ?
+            <div>
+              Current Step: {danceSteps[currentStepIndex]}
+              <button onClick={() => this.setState({ currentStepIndex: currentStepIndex + 1 })}>Perform Next Step</button>
+            </div>
+            :
+            qualified ? <p>You are Qualified</p> : null
+        }
       </div>
     );
   }
