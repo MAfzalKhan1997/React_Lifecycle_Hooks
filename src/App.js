@@ -9,46 +9,53 @@ class App extends Component {
 
   constructor() {
     super()
-    
+
     this.state = {
 
       // volume:0,
     }
     this.furtherSteps = this.furtherSteps.bind(this);
     this.applaud = this.applaud.bind(this);
+    this.stars = this.stars.bind(this);
   }
 
-  static getDerivedStateFromProps(){
+  static getDerivedStateFromProps() {
 
-    return { 
-      volume : 5 
+    return {
+      volume: 5
     }
 
   }
 
-  furtherSteps(furtherSteps){
+  furtherSteps(furtherSteps) {
     this.setState({
       furtherSteps,
     })
   }
 
-applaud(){
-  this.setState({
-    applaud:'Happy',
-  })
-}
- 
+  applaud() {
+    this.setState({
+      applaud: 'Happy',
+    })
+  }
+
+  stars(stars) {
+    this.setState({
+      stars,
+    })
+  }
+
   render() {
-    const { furtherSteps, applaud } = this.state;
+    const { furtherSteps, applaud, stars } = this.state;
     return (
       <div className="App">
 
-        <Kid dressColor={'blue'} furtherSteps={furtherSteps} applaud={applaud} />
+        <Kid dressColor={'blue'} furtherSteps={furtherSteps} applaud={applaud} stars={stars} />
         <br />
         <Teacher nextSteps={this.furtherSteps} />
         <br />
         <br />
-        <Judge giveApplaud={this.applaud} />
+        <Judge giveApplaud={this.applaud} getStars={this.stars} />
 
       </div>
     );

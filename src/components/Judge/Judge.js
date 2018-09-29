@@ -12,17 +12,23 @@ export default class Judge extends React.Component {
   }
 
   applaud() {
- 
+
     this.props.giveApplaud();
- 
+
   }
 
   provideStars() {
     const { stars } = this.state;
+    const { getStars } = this.props;
 
     this.setState({
       stars: stars + 1
     })
+    getStars(stars);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.stars <= 5
   }
 
   render() {

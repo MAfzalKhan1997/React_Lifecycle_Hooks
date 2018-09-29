@@ -21,13 +21,13 @@ export default class Kid extends React.Component {
     const { furtherSteps, applaud } = props;
     const { danceSteps, emotion } = state;
 
-     if (danceSteps.length < 5) {
+    if (danceSteps.length < 5) {
       danceSteps.push(...furtherSteps)
     }
 
-    console.log('props', props)
-    console.log('dancesetps', danceSteps)
-    
+    // console.log('props', props)
+    // console.log('dancesetps', danceSteps)
+
     return {
       danceSteps,
       startedPerforming: danceSteps.length === 5 ? true : false,
@@ -44,9 +44,21 @@ export default class Kid extends React.Component {
 
   }
 
+  componentDidUpdate(prevProps) {
+    console.log(prevProps)
+    if (prevProps.stars === 3 ) {
+      
+      this.qualified();
+
+    }
+  }
 
   qualified() {
-    this.setState({ startedPerforming: false })
+    console.log('qualified')
+    this.setState({ 
+      startedPerforming: false,
+      danceSteps: [] 
+    })
   }
 
   render() {
