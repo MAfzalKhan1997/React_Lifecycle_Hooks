@@ -10,8 +10,7 @@ class App extends Component {
   constructor() {
     super()
 
-    this.state = {
-
+    this.state = { 
       available: true,
       judge: true,
     }
@@ -22,8 +21,7 @@ class App extends Component {
     this.judge = this.judge.bind(this);
   }
 
-  static getDerivedStateFromProps() {
-
+  static getDerivedStateFromProps() { 
     return { volume: 5 }
   }
 
