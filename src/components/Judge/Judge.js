@@ -11,8 +11,7 @@ export default class Judge extends React.Component {
     }
   }
 
-  applaud() {
-
+  applaud() { 
     this.props.giveApplaud();
   }
 
@@ -26,8 +25,7 @@ export default class Judge extends React.Component {
     getStars(stars);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-
+  shouldComponentUpdate(nextProps, nextState) { 
     return nextState.stars <= 5
   }
 
